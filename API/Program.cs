@@ -24,6 +24,8 @@ namespace API
                 try{
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
+                    Seed.SeedData(context); // this add all the activities to the database
+               
                 }catch (Exception ex){
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred during migrations");
